@@ -293,28 +293,29 @@ class KAISTPed(data.Dataset):
         mix_val = 0.7
 
         img_h, img_w = raw_vis_img.shape[:2]
+        lwir_h, lwir_w = raw_lwir_img.shape[:2]
         
         if y + h > img_h:
             y = y - (y + h - img_h) - 1 
         if x + w > img_w:
             x = x - (x + w - img_w) - 1
-        if y+h > raw_vis_img.shape[0] or x+w > raw_vis_img.shape[1]:
-            if y+h > raw_vis_img.shape[0] and x+w > raw_vis_img.shape[1]:
-                origin_vis_val = raw_vis_img[raw_vis_img.shape[0]-h:raw_vis_img.shape[0], raw_vis_img.shape[1]-w:raw_vis_img.shape[1], :]
-                origin_lwir_val = raw_lwir_img[raw_lwir_img.shape[0]-h:raw_lwir_img.shape[0], raw_lwir_img.shape[1]-w:raw_lwir_img.shape[1]]
-                raw_vis_img[raw_vis_img.shape[0]-h:raw_vis_img.shape[0], raw_vis_img.shape[1]-w:raw_vis_img.shape[1], :] = (origin_vis_val * (1-mix_val) + vis_gt_sample * mix_val).astype(int)
-                raw_lwir_img[raw_lwir_img.shape[0]-h:raw_lwir_img.shape[0], raw_lwir_img.shape[1]-w:raw_lwir_img.shape[1]] = (origin_lwir_val * (1-mix_val) + lwir_gt_sample * mix_val).astype(int)
+        if y+h > img_h or x+w > img_w:
+            if y+h > img_h and x+w > img_w:
+                origin_vis_val = raw_vis_img[img_h-h:img_h, img_w-w:img_w, :]
+                origin_lwir_val = raw_lwir_img[lwir_h-h:lwir_h, lwir_w-w:lwir_w]
+                raw_vis_img[img_h-h:img_h, img_w-w:img_w, :] = (origin_vis_val * (1-mix_val) + vis_gt_sample * mix_val).astype(int)
+                raw_lwir_img[lwir_h-h:lwir_h, lwir_w-w:lwir_w] = (origin_lwir_val * (1-mix_val) + lwir_gt_sample * mix_val).astype(int)
 
-            elif x+w > raw_vis_img.shape[1]:
-                origin_vis_val = raw_vis_img[y:y+h, raw_vis_img.shape[1]-w:raw_vis_img.shape[1], :]
-                origin_lwir_val = raw_lwir_img[y:y+h, raw_lwir_img.shape[1]-w:raw_lwir_img.shape[1]]
-                raw_vis_img[y:y+h, raw_vis_img.shape[1]-w:raw_vis_img.shape[1], :] = (origin_vis_val * (1-mix_val) + vis_gt_sample * mix_val).astype(int)
-                raw_lwir_img[y:y+h, raw_lwir_img.shape[1]-w:raw_lwir_img.shape[1]] = (origin_lwir_val * (1-mix_val) + lwir_gt_sample * mix_val).astype(int)
+            elif x+w > img_w:
+                origin_vis_val = raw_vis_img[y:y+h, img_w-w:img_w, :]
+                origin_lwir_val = raw_lwir_img[y:y+h, lwir_w-w:lwir_w]
+                raw_vis_img[y:y+h, img_w-w:img_w, :] = (origin_vis_val * (1-mix_val) + vis_gt_sample * mix_val).astype(int)
+                raw_lwir_img[y:y+h, lwir_w-w:lwir_w] = (origin_lwir_val * (1-mix_val) + lwir_gt_sample * mix_val).astype(int)
             else:
-                origin_vis_val = raw_vis_img[raw_vis_img.shape[0]-h:raw_vis_img.shape[0], x:x+w, :]
-                origin_lwir_val = raw_lwir_img[raw_lwir_img.shape[0]-h:raw_lwir_img.shape[0], x:x+w]
-                raw_vis_img[raw_vis_img.shape[0]-h:raw_vis_img.shape[0], x:x+w, :] = (origin_vis_val * (1-mix_val) + vis_gt_sample * mix_val).astype(int)
-                raw_lwir_img[raw_lwir_img.shape[0]-h:raw_lwir_img.shape[0], x:x+w] = (origin_lwir_val * (1-mix_val) + lwir_gt_sample * mix_val).astype(int)
+                origin_vis_val = raw_vis_img[img_h-h:img_h, x:x+w, :]
+                origin_lwir_val = raw_lwir_img[lwir_h-h:lwir_h, x:x+w]
+                raw_vis_img[img_h-h:img_h, x:x+w, :] = (origin_vis_val * (1-mix_val) + vis_gt_sample * mix_val).astype(int)
+                raw_lwir_img[lwir_h-h:lwir_h, x:x+w] = (origin_lwir_val * (1-mix_val) + lwir_gt_sample * mix_val).astype(int)
         else:
             origin_vis_val = raw_vis_img[y:y+h, x:x+w, :]
             origin_lwir_val = raw_lwir_img[y:y+h, x:x+w]
@@ -397,11 +398,6 @@ class KAISTPed(data.Dataset):
                         if len(vis_boxes) != 0 and len(lwir_boxes) != 0:
                             vis_w_lst, vis_h_lst = [], []
                             for i in vis_boxes:
-                                if len(i) < 4:
-                                    print(f"self._annopath % (set_id, vid_id, 'visible', img_id ) : {self._annopath % (set_id, vid_id, 'visible', img_id )}")
-                                    print(f"line : {line}")
-                                    print(f"vis_boxes : {vis_boxes}")
-                                    print(f"i : {i}")
                                 if self.data == "KAIST":
                                     vis_w_lst.append(int(i[3]))
                                     vis_h_lst.append(int(i[4]))

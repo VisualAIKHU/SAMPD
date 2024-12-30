@@ -2,15 +2,11 @@ import config
 import numpy as np
 from collections import defaultdict
 
-from model import SSD300, SSD300_3Way
+from model import SSD300_3Way
 
-from torchvision.ops import nms, box_iou
-import torch.nn.functional as F
 import torch
-import time
-from collections import defaultdict
-from PIL import Image, ImageDraw, ImageFont
-import copy
+from torchvision.ops import box_iou
+import torch.nn.functional as F
 
 
 def init_model():

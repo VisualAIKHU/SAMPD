@@ -20,7 +20,7 @@ SA_type = "small" # sparse annotation type : random or small
 set_type = "exist"
 teacher =True
 pedmixing = True
-pretrained = f"../pretrained_weights/{dataset_type}_pretrained_{MP}.pth.tar000"
+pretrained = f"../weights/{dataset_type}_pretrained_{MP}.pth.tar000"
 
 # Dataset path
 PATH = edict()
@@ -33,11 +33,11 @@ elif dataset_type == "LLVIP":
     PATH.JSON_GT_FILE = os.path.join('LLVIP_annotations_test.json' ) 
 
 if MP == 30:
-    final_weights = "../final_weights/KAIST_30.pth.tar000"
+    final_weights = "../weights/KAIST_30.pth.tar000"
 elif MP == 50:
-    final_weights = "../final_weights/KAIST_50.pth.tar000"
+    final_weights = "../weights/KAIST_50.pth.tar000"
 elif MP == 70:
-    final_weights = "../final_weights/KAIST_70.pth.tar000"
+    final_weights = "../weights/KAIST_70.pth.tar000"
 
 # train
 train = edict()

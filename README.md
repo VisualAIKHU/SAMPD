@@ -2,7 +2,7 @@
 
 This repository is the pytorch implementation of our paper, SAMPD.
 
-Accepted at [AAAI 2025]([[https://cvpr.thecvf.com/Conferences/2024](https://aaai.org/conference/aaai/aaai-25/)]): 
+Accepted at [AAAI 2025](https://aaai.org/conference/aaai/aaai-25/): 
 
 <a href="https://github.com/cksdlakstp12"><strong>Chan Lee*</strong></a>
 ·
@@ -16,14 +16,14 @@ Accepted at [AAAI 2025]([[https://cvpr.thecvf.com/Conferences/2024](https://aaai
 
 <b>Kyung Hee University</b>
 
-<a><img align="center" src="docs/uni_logo.png" width="50%"/></a>
+<a><img align="center" src="docs/uni_seal.png" width="50%"/></a>
 
 _________________ 
 
 ## Abstract
 
 Although existing Sparsely Annotated Object Detection (SAOD) approaches have made progress in handling sparsely annotated environments in multispectral domain, where only some pedestrians are annotated, they still have the following limitations: (_i_) they lack considerations for improving the quality of pseudo-labels for missing annotations, and (_ii_) they rely on fixed ground truth annotations, which leads to learning only a limited range of pedestrian visual appearances in the multispectral domain. To address these issues, we propose a novel framework called Sparsely Annotated Multispectral Pedestrian Detection (SAMPD). For limitation (_i_), we introduce Multispectral Pedestrian-aware Adaptive Weight (MPAW) and Positive Pseudo-label Enhancement (PPE) module. Utilizing multispectral knowledge, these modules ensure the generation of high-quality pseudo-labels and enable effective learning by increasing weights for high-quality pseudo-labels based on modality characteristics. To address limitation (_ii_), we propose an Adaptive Pedestrian Retrieval Augmentation (APRA) module, which adaptively incorporates pedestrian patches from ground-truth and dynamically integrates high-quality pseudo-labels with the ground-truth, facilitating a more diverse learning pool of pedestrians. Extensive experimental results demonstrate that our SAMPD significantly enhances performance in sparsely annotated environments within the multispectral domain.
-<div align=center> <img src="docs/architecture.jpg" width="850"/> </div>
+<div align=center> <img src="docs/architecture.png" width="850"/> </div>
 
 ## Environment
 

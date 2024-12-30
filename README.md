@@ -38,9 +38,10 @@ conda activate SAMPD_env
 
 ### Using pip
 
-If you want to install via pip directly, you can use the command ```pip install -r requirements.txt```. We used `python 3.8` version, please use the command below to install the CUDA version of pytorch.
+If you want to install via pip directly, you can use the commands below. We used `python 3.8` version, please use the command below to install the CUDA version of pytorch.
 
 ```bash
+pip install -r requirements.txt
 pip install torch==1.12.1+cu116 torchvision==0.13.1+cu116 torchaudio==0.12.1 --index-url https://download.pytorch.org/whl/cu116
 ```
 

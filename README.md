@@ -4,7 +4,7 @@ This repository is the pytorch implementation of our paper, SAMPD.
 
 Accepted at [AAAI 2025](https://aaai.org/conference/aaai/aaai-25/): 
 
-[Paper] [[arXiv](https://arxiv.org/abs/2501.02640)]
+[[Paper](https://ojs.aaai.org/index.php/AAAI/article/view/32472)] [[arXiv](https://arxiv.org/abs/2501.02640)]
 
 <a href="https://github.com/cksdlakstp12"><strong>Chan Lee*</strong></a>
 ·
